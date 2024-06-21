@@ -1,18 +1,24 @@
 const Post = require('../models/posts');
+const User = require('../models/user');
 const handleSuccess = require('../service/handleSuccess');
 const handleError = require('../service/handleError');
 
 const posts = {
     async getPosts(req, res) {
-        const getData = await Post.find();
-        handleSuccess(res, "取得貼文所有資料", getData);
+        const timeSort = req.query.timeSort == "asc" ? "createdAt" : "-createdAt"
+        const search = req.query.q !== undefined ? { "content": new RegExp(req.query.q) } : {};
+        const getData = await Post.find(search).populate({
+            path: 'user',
+            select: 'name photo '
+        }).sort(timeSort);
+        handleSuccess(res, "取得貼文資料", getData);
     },
     async createPosts(req, res) {
         try {
             const getData = req.body;
 
             // 判斷必填欄位是否填寫
-            if (!getData.name || !getData.content) {
+            if (!getData.user || !getData.content) {
                 return handleError(res, "請確實填寫必填欄位");
             }
 
@@ -29,7 +35,7 @@ const posts = {
             const getData = req.body;
 
             // 判斷必填欄位是否填寫
-            if (!getData.name || !getData.content) {
+            if (!getData.user || !getData.content) {
                 return handleError(res, "請確實填寫必填欄位");
             }
 
@@ -52,11 +58,11 @@ const posts = {
         await Post.deleteMany({});
         handleSuccess(res, "刪除所有資料成功", []);
     },
-    async deletePosts(req, res){
+    async deletePosts(req, res) {
         const id = req.params.id;
         try {
             const oldData = await Post.findById(id);
-            if (oldData){
+            if (oldData) {
                 const id = oldData._id.toString();
                 await Post.findByIdAndDelete(id);
                 handleSuccess(res, `此資料刪除成功`, null);

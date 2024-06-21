@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema(
     {
-        name: {
-            type: String,
-            required: [true, "貼文名稱未填寫"],
+        user: {
+            type: mongoose.Schema.ObjectId,
+            ref: "user",   // 關聯 user 的 model
+            required: [true, "貼文姓名未填寫"],
         },
         image: {
             type: String,
@@ -26,5 +27,5 @@ const postSchema = new mongoose.Schema(
     { versionKey: false }  // 移除欄位 __v 方法」
 );
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model('post', postSchema);
 module.exports = Post;
