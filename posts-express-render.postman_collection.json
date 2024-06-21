@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "d785fc7b-c10b-4df8-bbc5-576b6ae2e032",
+		"name": "posts-express-render",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32459712"
+	},
+	"item": [
+		{
+			"name": "取得所有貼文",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://posts-express.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"posts-express",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得篩選過後的貼文",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://posts-express.onrender.com/posts?timeSort=asc&q=內容2",
+					"protocol": "https",
+					"host": [
+						"posts-express",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "timeSort",
+							"value": "asc"
+						},
+						{
+							"key": "q",
+							"value": "內容2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增貼文",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"6675661ce1aa1118ababcd72\",\r\n    \"content\": \"內容4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://posts-express.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"posts-express",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新單筆貼文資訊",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"6675661ce1aa1118ababcd72\",\r\n    \"content\": \"內容5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://posts-express.onrender.com/posts/667592b775078b4192efb095",
+					"protocol": "https",
+					"host": [
+						"posts-express",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts",
+						"667592b775078b4192efb095"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除所有貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://posts-express.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"posts-express",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆貼文資訊",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://posts-express.onrender.com/posts/667592b775078b4192efb095",
+					"protocol": "https",
+					"host": [
+						"posts-express",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts",
+						"667592b775078b4192efb095"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
